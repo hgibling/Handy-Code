@@ -1,0 +1,54 @@
+shopt -s expand_aliases
+
+alias bconfig='nano ~/.bash_profile'
+alias bsource='source ~/.bash_profile'
+
+alias nano="nano -cil"
+alias wgetc="wget -c --retry-connrefused"
+
+alias ls="ls --color=auto -p"
+alias ll="ls -lh"
+alias la="ls -a"
+alias ld="ls -d */"
+alias lu="ls -U"
+alias luh="ls -U | head"
+
+alias rm="rm -I"
+alias les="less"
+alias lesss="less -S"
+alias grep="grep --color"
+alias grepn="grep -n"
+alias grepi="grep -i"
+alias grepv="grep -v"
+
+alias mkdir="mkdir -p"
+alias wcl="wc -l"
+alias sorta="sort -k1,1V"
+
+alias awkcc="awk -v FS=',' -v OFS=','"
+alias awktt="awk -v FS='\t' -v OFS='\t'"
+alias awkct="awk -v FS=',' -v OFS='\t'"
+alias awktc="awk -v FS='\t' -v OFS=','"
+
+alias col="column -t"
+alias chx="chmod +x"
+
+alias tmuxl="tmux ls"
+alias tmuxt="tmux a -t"
+alias tmuxn="tmux new -s"
+
+alias qstatl="qstat -xml | tr '\n' ' ' | sed 's#<job_list[^>]*>#\n#g' | sed 's#<[^>]*>##g' | grep ' ' | column -t"
+function qstatlc { qstat -ext -xml | tr '\n' ' ' | sed 's#<job_list[^>]*>#\n#g' | sed 's#<[^>]*>##g' | grep ' ' | column -t | awk '{print $1" "$4" "$6" "$8}' | uniq -c | column -t; }
+
+function binbash { echo '#!/bin/bash' > $1; echo '#$ -cwd' >> $1; echo 'source ~/scripts/error-handling.sh' >> $1; echo 'source ~/.bash_profile' >> $1; chmod +x $1; }
+function binbasht { echo '#!/bin/bash' > $1; echo '#$ -cwd' >> $1; echo "#\$ -t 1-$2" >> $1; echo 'source ~/scripts/error-handling.sh' >> $1; echo 'source ~/.bash_profile' >> $1; chmod +x $1; }
+
+# contents of ~/scripts/error-handling.sh
+error() {
+  echo "ERROR: $@" 1>&2
+}
+
+fail() {
+  error "FAIL: $@"
+  exit 1
+}

@@ -38,3 +38,18 @@ undo merge
 ```
 git reset –-merge
 ```
+
+undo previous commit and any file changes 
+```
+git reset --hard HEAD~1
+```
+
+undo previous commit but keep changes
+```
+git reset HEAD~1
+```
+
+undo previous commit but keep changes and files in 'add'ed state
+```
+git reset --soft HEAD~1
+```

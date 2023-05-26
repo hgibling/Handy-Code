@@ -21,3 +21,14 @@ pass dplyr column names as variables:
 ```
 df %>% mutate(MeanCOL=mean(.data[[COL]])
 ```
+
+default R colors:
+```
+Red     DF536B
+Green   61D04F
+Blue    2297E6
+Cyan    28E2E5
+Magenta CD0BBC
+Yellow  F5C710
+Grey    9E9E9E
+```

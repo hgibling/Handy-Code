@@ -188,6 +188,11 @@ get first few files in massive directory:
 ls -U | head
 ```
 
+remove extra spaces from sort/uniq output:
+```
+awk '{$1=$1};1' 
+```
+
 add flags to bash script:
 ```
 while getopts a:b:cd flags
